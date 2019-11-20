@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -27,10 +28,28 @@ public class ControllerInicio {
 	
 	protected Stage stage;
 	
+	public String marca;
+	
 	public void initialize() {
 		stage = new Stage(StageStyle.DECORATED);
 		stage.setTitle("BUSCADOR");
-		
-		
+		cargarComboMarcas();
 	}
+	
+	private void cargarComboMarcas() {
+        ArrayList<String> marcas = new ArrayList<String>();
+        marcas.add("Samsung");
+        marcas.add("LG");
+        marcas.add("Sony");
+        marcas.add("Huawei");
+        marcas.add("Motorola");
+        marcas.add("Apple");
+        marcas.add("One Plus");
+        marcas.add("Lenovo");
+        marcas.add("Xiaomi");
+        ObservableList<String> obsA = FXCollections.observableArrayList(marcas);
+        comboBox.setItems(obsA);
+        //obtener el valor del combo:
+        // marca= comboBox.getValue();
+    }
 }
