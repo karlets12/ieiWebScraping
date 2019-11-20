@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -28,12 +29,14 @@ public class ControllerInicio {
 	
 	protected Stage stage;
 	
-	public String marca;
+	public String marca="";
+	public String modelo="";
 	
 	public void initialize() {
 		stage = new Stage(StageStyle.DECORATED);
 		stage.setTitle("BUSCADOR");
 		cargarComboMarcas();
+		//obtener el valor del combo:
 	}
 	
 	private void cargarComboMarcas() {
@@ -49,7 +52,14 @@ public class ControllerInicio {
         marcas.add("Xiaomi");
         ObservableList<String> obsA = FXCollections.observableArrayList(marcas);
         comboBox.setItems(obsA);
-        //obtener el valor del combo:
-        // marca= comboBox.getValue();
     }
+	
+	@FXML
+   private void botonBuscar(ActionEvent event) {
+    	marca = comboBox.getValue();
+    	modelo = input.getText();
+    	System.out.println("marca" + "modelo");
+    }
+	
+	
 }

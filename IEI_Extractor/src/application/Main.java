@@ -2,6 +2,13 @@ package application;
 	
 import java.io.IOException;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -9,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 
 
 public class Main extends Application {
@@ -40,8 +48,27 @@ public class Main extends Application {
 			   primaryStage.setMaxWidth(600);
 			   
 			   primaryStage.show(); 
+			   ControllerInicio ci = new ControllerInicio();
 			   //ControladorPrincipal controlador = loader.getController();
 			   //controlador.setPrimaryStage(primaryStage);
+			   
+			   //-------------------------------------------SELENIUM-------------------------------------------
+			   WebDriver driver = new FirefoxDriver();
+			   driver.get("https://www.amazon.es/");
+			   //localizamos el input del buscador
+			   WebElement buscadorAmazon = driver.findElement(By.cssSelector("input.__mk_es_ES"));
+			   //introducimos la cadena de búsqueda
+			   String busqueda = ci.marca + ci.modelo;
+			   buscadorAmazon.sendKeys(busqueda);
+			   buscadorAmazon.submit();
+			   
+			   //Esperar 10 segundos para una condición
+			   WebDriverWait waiting = new WebDriverWait(driver, 10);
+			  	 //Comprobar el título de la página de respuesta
+			   if( driver.getTitle().equals("Universidad Politécnica de Valencia") )
+			   System.out.println("PASA");
+			   else System.err.println("FALLA");
+			   
 		   } catch (IOException e) { 
 	         e.printStackTrace(); 
 		   }
