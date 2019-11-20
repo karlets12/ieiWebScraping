@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -54,13 +55,15 @@ public class Main extends Application {
 			   
 			   //-------------------------------------------SELENIUM-------------------------------------------
 			   WebDriver driver = new FirefoxDriver();
-			   driver.get("https://www.amazon.es/");
+			   driver.get("https://www.google.com/");
 			   //localizamos el input del buscador
-			   WebElement buscadorAmazon = driver.findElement(By.cssSelector("input.__mk_es_ES"));
+			   WebElement buscadorGoogle = driver.findElement(By.name("q"));
 			   //introducimos la cadena de búsqueda
-			   String busqueda = ci.marca + ci.modelo;
-			   buscadorAmazon.sendKeys(busqueda);
-			   buscadorAmazon.submit();
+			   //String busqueda = ci.marca + ci.modelo;
+			   String busqueda= "upv";
+			   buscadorGoogle.sendKeys(busqueda);
+			   buscadorGoogle.sendKeys(Keys.ENTER);
+			   buscadorGoogle.submit();
 			   
 			   //Esperar 10 segundos para una condición
 			   WebDriverWait waiting = new WebDriverWait(driver, 10);
