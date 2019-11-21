@@ -81,4 +81,33 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	/*
+	 * public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("**************** Inicio de Selenium *********************");
+		String exePath = "C:\\firefox\\geckodriver.exe";
+		System.setProperty("webdriver.gecko.driver", exePath);
+		
+		WebDriver driver = new FirefoxDriver();
+		   driver.get("https://www.google.com/");
+		   //localizamos el input del buscador
+		   WebElement buscadorGoogle = driver.findElement(By.name("q"));
+		   //introducimos la cadena de búsqueda
+		   //String busqueda = ci.marca + ci.modelo;
+		   String busqueda= "upv";
+		   buscadorGoogle.sendKeys(busqueda);
+		   //buscadorGoogle.sendKeys(Keys.ENTER);
+		   buscadorGoogle.submit();
+		   
+		   //Esperar 10 segundos para una condición
+		   WebDriverWait waiting = new WebDriverWait(driver, 1cb0);
+		   waiting.until( ExpectedConditions.presenceOfElementLocated( By.id("pnnext") ) );
+		  	 //Comprobar el título de la página de respuesta
+		   System.out.println("Título de la página " + driver.getTitle());
+		   if( driver.getTitle().equals("upv - Buscar con Google") )
+		   System.out.println("PASA");
+		   else System.err.println("FALLA");
+
+	}*/
 }
