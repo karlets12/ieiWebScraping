@@ -1,9 +1,11 @@
 package application;
 
-import java.awt.List;
+import java.util.List;
 import java.net.URL;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -11,8 +13,11 @@ import java.util.ResourceBundle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,11 +90,9 @@ public class ControllerInicio {
 			   String busqueda= marca + " " + modelo;
 			   buscadorGoogle.sendKeys(busqueda);
 			   buscadorGoogle.submit();
-			   
 			   //Esperar 10 segundos para una condición
 			   WebDriverWait waiting = new WebDriverWait(driver, 10);
-			  waiting.until( ExpectedConditions.presenceOfElementLocated( By.className("a-last") ) );
-			  
+			   waiting.until( ExpectedConditions.presenceOfElementLocated( By.className("a-last") ) );
 			  //Comprobar el título de la página de respuesta
 			   System.out.println("Título de la página " + driver.getTitle());
 			   String titulo = driver.getTitle();
@@ -106,13 +109,90 @@ public class ControllerInicio {
 			   System.out.println("PASA");
 			   else System.err.println("FALLA");
     	}
-    	/*if(fnacCheck.isSelected()) {
+    	if(fnacCheck.isSelected()) {
+    		String exePath = "C:\\firefox\\geckodriver.exe";
+			System.setProperty("webdriver.gecko.driver", exePath);
+			System.out.print(marca +" " + modelo);
+				WebDriver driver = new FirefoxDriver();
+				driver.get("https://www.fnac.es/");
+			   //localizamos el input del buscador
+			   WebElement buscadorGoogle = driver.findElement(By.id("Fnac_Search"));
+			   //introducimos la cadena de búsqueda
+			   String busqueda= marca + " " + modelo;
+			   buscadorGoogle.sendKeys(busqueda);
+			   buscadorGoogle.submit();
+			   //Esperar 10 segundos para una condición
+			   WebDriverWait waiting = new WebDriverWait(driver, 10);
+			   waiting.until( ExpectedConditions.presenceOfElementLocated( By.className("f-icon")) );
+			  
+			  //Comprobar el título de la página de respuesta
+			   System.out.println("Título de la página " + driver.getTitle());
+			   String titulo = driver.getTitle();
+			   if( driver.getTitle().equals(titulo))
+				   System.out.println("PASA");
+				   else System.err.println("FALLA");
     		
     	}
     	if(pcComponentsCheck.isSelected()) {
+    		String exePath = "C:\\firefox\\geckodriver.exe";
+			System.setProperty("webdriver.gecko.driver", exePath);
+				WebDriver driver = new FirefoxDriver();
+				driver.get("https://www.pccomponentes.com/");
+			   //localizamos el input del buscador
+			   WebElement buscadorGoogle = driver.findElement(By.name("query"));
+			   //introducimos la cadena de búsqueda
+			   String busqueda= marca + " " + modelo;
+			   buscadorGoogle.sendKeys(busqueda);
+			   buscadorGoogle.submit();
+			   
+			   //Esperar 10 segundos para una condición
+			   WebDriverWait waiting = new WebDriverWait(driver, 1000);
+			   waiting.until( ExpectedConditions.presenceOfElementLocated( By.xpath("//*[contains(@class, 'ais-Hits')]")) );
+			  
+			   waitForPageLoaded(driver);
+			   
+			  //Comprobar el título de la página de respuesta
+			   System.out.println("Título de la página " + driver.getTitle());
+			   String titulo = driver.getTitle();
+			   if( driver.getTitle().equals(titulo))
+				   System.out.println("PASA");
+				   else System.err.println("FALLA");
+			   //Extracción de datos
+			   
+			   List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 'ais-Hits')]"));
+			  
+			  
+			   System.out.println("Número de elementos de la lista: " + listaElementos.size() );
+					   //Obtener cada uno de los artículos
+					   WebElement elementoActual, navegacion;
+					   int j=1;
+					   for (int i=0; i<listaElementos.size(); i++)
+					   {
+					   elementoActual = listaElementos.get(i);
+					   navegacion = elementoActual.findElement(By.xpath("/html/body/header/div[3]/div[2]/section/div[2]/div[2]/ol/li[" + j +"]/div/div/div[3]"));
+					   System.out.println(j + " " + navegacion.getText());
+					   j++;
+					   }
     		
-    	}*/
+    	}
 	}
 	
+	
+	
+	
+	public static void waitForPageLoaded(WebDriver driver) {
+		 ExpectedCondition<Boolean> expectation = new
+		 ExpectedCondition<Boolean>() {
+		 public Boolean apply(WebDriver driver) {
+		 return ((JavascriptExecutor) driver).executeScript("returndocument.readyState").toString().equals("complete"); }
+		 };
+		 try {
+		 Thread.sleep(1000);
+		 WebDriverWait wait = new WebDriverWait(driver, 30);
+		 wait.until(expectation);
+		 } catch (Throwable error) {
+		 System.out.println("Timeout waiting for Page Load Request to complete.");
+		 }
+		 }
 	
 }
