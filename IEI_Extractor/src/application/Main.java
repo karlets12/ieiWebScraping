@@ -54,8 +54,13 @@ public class Main extends Application {
 		
 	 }
 	 
+	 private static WebDriver driver = null;
+	 
 	public static void main(String[] args) {
 		launch(args);
+		/*String exePath = "C:\\firefox\\geckodriver.exe";
+		System.setProperty("webdriver.gecko.driver", exePath);*/
+		
 	}
 	/*
 	 * public static void main(String[] args) {
