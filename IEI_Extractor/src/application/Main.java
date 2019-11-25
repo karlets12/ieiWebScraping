@@ -33,7 +33,7 @@ public class Main extends Application {
 	   } 
 	 
 	 public void initRootLayout() {
-		   try { 
+		 try {
 			   // Load root layout from fxml file. 
 			   FXMLLoader loader = new FXMLLoader();       
 			   loader.setLocation(Main.class.getResource("./Inicio.fxml")); 
@@ -49,34 +49,10 @@ public class Main extends Application {
 			   primaryStage.setMaxWidth(600);
 			   
 			   primaryStage.show(); 
-			   ControllerInicio ci = new ControllerInicio();
-			   //ControladorPrincipal controlador = loader.getController();
-			   //controlador.setPrimaryStage(primaryStage);
-			   
-			   //-------------------------------------------SELENIUM-------------------------------------------
-			   WebDriver driver = new FirefoxDriver();
-			   driver.get("https://www.google.com/");
-			   //localizamos el input del buscador
-			   WebElement buscadorGoogle = driver.findElement(By.name("q"));
-			   //introducimos la cadena de búsqueda
-			   //String busqueda = ci.marca + ci.modelo;
-			   String busqueda= "upv";
-			   buscadorGoogle.sendKeys(busqueda);
-			   buscadorGoogle.sendKeys(Keys.ENTER);
-			   buscadorGoogle.submit();
-			   
-			   //Esperar 10 segundos para una condición
-			   WebDriverWait waiting = new WebDriverWait(driver, 10);
-			  	 //Comprobar el título de la página de respuesta
-			   if( driver.getTitle().equals("Universidad Politécnica de Valencia") )
-			   System.out.println("PASA");
-			   else System.err.println("FALLA");
-			   
-		   } catch (IOException e) { 
-	         e.printStackTrace(); 
-		   }
-	   } 
-	 
+			   }
+		 catch(Exception e) {}
+		
+	 }
 	 
 	public static void main(String[] args) {
 		launch(args);

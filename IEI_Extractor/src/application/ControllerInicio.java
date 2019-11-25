@@ -58,8 +58,22 @@ public class ControllerInicio {
    private void botonBuscar(ActionEvent event) {
     	marca = comboBox.getValue();
     	modelo = input.getText();
-    	System.out.println("marca" + "modelo");
+    	compruebaCheckBox();
+    	
     }
+	
+	
+	public void compruebaCheckBox() {
+		if (amazonCheck.isSelected()) {
+    		System.out.print("amazon funciona");
+    	}
+    	if(fnacCheck.isSelected()) {
+    		
+    	}
+    	if(pcComponentsCheck.isSelected()) {
+    		
+    	}
+	}
 	
 	
 }

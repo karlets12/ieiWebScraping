@@ -16,6 +16,6 @@
       <CheckBox fx:id="pcComponentsCheck" layoutX="121.0" layoutY="191.0" mnemonicParsing="false" text="Pc Componentes" />
       <Text layoutX="65.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Marca:" />
       <Text layoutX="64.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo:" />
-      <Button fx:id="buttonBuscar" layoutX="75.0" layoutY="311.0" mnemonicParsing="false" onMouseClicked="#botonBuscar" text="Buscar" />
+      <Button fx:id="buttonBuscar" layoutX="75.0" layoutY="311.0" mnemonicParsing="false" onAction="#botonBuscar" text="Buscar" />
    </children>
 </AnchorPane>
