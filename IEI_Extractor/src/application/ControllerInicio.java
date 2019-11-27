@@ -95,33 +95,34 @@ public class ControllerInicio {
 			WebDriverWait waiting = new WebDriverWait(driver, 10);
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("a-last")));
 			// T�TULO DE RESPUESTA
-			System.out.println("T�tulo de la p�gina " + driver.getTitle());
+			System.out.println("Titulo de la p�gina " + driver.getTitle());
 
-			List<WebElement> listaPreciosAmazon = driver
-					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
-			
-			//DUDA NO ME LISTA LOS NOMBRES DE LOS PRODUCTOS DE AMAZON
-			List<WebElement> listaNombresAmazon = driver
+			//ELEMENTOS
+			List<WebElement> listaElementos = driver
 					.findElements(By.xpath("//*[contains(@class, 's-result-item')]"));
 
-			System.out.println("N�mero de elementos de la lista: " + listaNombresAmazon.size());
-			
-			WebElement precioActual, nombreActual, precio;
-			String nombre;
+			System.out.println("Numero de elementos de la lista: " + listaElementos.size());
+			String nombre="";
+			String precio="";
+			String precioOtro="";
 			int j = 1;
-			for (int i = 0; i < 5; i++) {
-				precioActual = listaPreciosAmazon.get(i);
-				nombreActual = listaNombresAmazon.get(i);
-				Thread.sleep(400);
+			for (int i = 0; i < listaElementos.size(); i++) {
 				try {
-				precio = precioActual
-						.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" + j
-								+ "]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span[2]"));
-				nombre = nombreActual.findElement(By.cssSelector("span.a-text-normal")).getText().substring(0,18);
-				System.out.println(nombre);
-					System.out.println(j + " " + precio.getText());
+					nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText();
+					precio = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price']")).getText();
+					System.out.println("Nombre:" + nombre + ", Precio:" + precio);
+					try {
+						nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText();
+						precioOtro = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price a-text-price']")).getText();
+						System.out.println("Nombre:" + nombre + ", Precio:" + precioOtro);
+					}catch(Exception e) {
+						nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText());
+						precioOtro=precio;
+						System.out.println("Nombre:" + nombre + ", Precio:" + precioOtro);
+					}
 				}catch(Exception e) {
-					System.out.println("No hay m�s resultados para esta b�squeda");
+					precio=listaElementos.get(i).findElement(By.cssSelector("span[class='a-color-base']")).getText();
+					precioOtro=precio;
 				}
 				j++;
 			}
