@@ -8,7 +8,7 @@ public class Smartphone {
  
  
  
- public Smartphone(String name, String price,String web)
+ public Smartphone(String name, double price,String web)
  {
      this.name = name;
      this.price = price;

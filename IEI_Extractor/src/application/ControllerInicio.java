@@ -130,13 +130,8 @@ public class ControllerInicio {
 			   String titulo = driver.getTitle();
 			   if( driver.getTitle().equals(titulo))
 				   System.out.println("PASA");
-				   else System.err.println("FALLA");
-			   //Capturamos los elementos y los metemos en la lista
-			   FirefoxDriver.WaitToAppear(driver, new TimeSpan(0, 0, 10), By.className("Article-item"));
-
-	           List<WebElement> elementos = driver.FindElements(By.className("Article-item")).ToList();
-
-			   System.out.println(elementos);
+				   else System.err.println("FALLA");		
+	  
 			   
 			   
 			   
