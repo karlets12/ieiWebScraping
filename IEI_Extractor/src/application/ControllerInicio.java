@@ -45,6 +45,7 @@ public class ControllerInicio {
 	
 	public String marca="";
 	public String modelo="";
+	public List<Smartphone> lista; 
 	
 	public void initialize() {
 		stage = new Stage(StageStyle.DECORATED);
@@ -118,20 +119,27 @@ public class ControllerInicio {
 			   //localizamos el input del buscador
 			   WebElement buscadorGoogle = driver.findElement(By.id("Fnac_Search"));
 			   //introducimos la cadena de búsqueda
-			   String busqueda= marca + " " + modelo;
+			   String busqueda= "smartphone" + " " + marca + " " + modelo;
 			   buscadorGoogle.sendKeys(busqueda);
 			   buscadorGoogle.submit();
 			   //Esperar 10 segundos para una condición
 			   WebDriverWait waiting = new WebDriverWait(driver, 10);
 			   waiting.until( ExpectedConditions.presenceOfElementLocated( By.className("f-icon")) );
-			  
 			  //Comprobar el título de la página de respuesta
 			   System.out.println("Título de la página " + driver.getTitle());
 			   String titulo = driver.getTitle();
 			   if( driver.getTitle().equals(titulo))
 				   System.out.println("PASA");
 				   else System.err.println("FALLA");
-    		
+			   //Capturamos los elementos y los metemos en la lista
+			   FirefoxDriver.WaitToAppear(driver, new TimeSpan(0, 0, 10), By.className("Article-item"));
+
+	           List<WebElement> elementos = driver.FindElements(By.className("Article-item")).ToList();
+
+			   System.out.println(elementos);
+			   
+			   
+			   
     	}
     	if(pcComponentsCheck.isSelected()) {
     		String exePath = "C:\\firefox\\geckodriver.exe";
