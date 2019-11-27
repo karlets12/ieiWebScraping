@@ -32,7 +32,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BotonBuscar = new System.Windows.Forms.Button();
+            this.checkBoxAmazon = new System.Windows.Forms.CheckBox();
+            this.checkBoxFnac = new System.Windows.Forms.CheckBox();
+            this.checkBoxPcComponets = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // comboBoxMarca
@@ -42,7 +45,6 @@
             this.comboBoxMarca.Name = "comboBoxMarca";
             this.comboBoxMarca.Size = new System.Drawing.Size(572, 21);
             this.comboBoxMarca.TabIndex = 0;
-            this.comboBoxMarca.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMarca_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -69,22 +71,55 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Modelo";
             // 
-            // button1
+            // BotonBuscar
             // 
-            this.button1.Location = new System.Drawing.Point(127, 137);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(572, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.BotonBuscar.Location = new System.Drawing.Point(127, 197);
+            this.BotonBuscar.Name = "BotonBuscar";
+            this.BotonBuscar.Size = new System.Drawing.Size(572, 23);
+            this.BotonBuscar.TabIndex = 4;
+            this.BotonBuscar.Text = "Buscar";
+            this.BotonBuscar.UseVisualStyleBackColor = true;
+            this.BotonBuscar.Click += new System.EventHandler(this.BotonBuscar_Click);
+            // 
+            // checkBoxAmazon
+            // 
+            this.checkBoxAmazon.AutoSize = true;
+            this.checkBoxAmazon.Location = new System.Drawing.Point(127, 107);
+            this.checkBoxAmazon.Name = "checkBoxAmazon";
+            this.checkBoxAmazon.Size = new System.Drawing.Size(64, 17);
+            this.checkBoxAmazon.TabIndex = 5;
+            this.checkBoxAmazon.Text = "Amazon";
+            this.checkBoxAmazon.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxFnac
+            // 
+            this.checkBoxFnac.AutoSize = true;
+            this.checkBoxFnac.Location = new System.Drawing.Point(127, 153);
+            this.checkBoxFnac.Name = "checkBoxFnac";
+            this.checkBoxFnac.Size = new System.Drawing.Size(50, 17);
+            this.checkBoxFnac.TabIndex = 6;
+            this.checkBoxFnac.Text = "Fnac";
+            this.checkBoxFnac.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxPcComponets
+            // 
+            this.checkBoxPcComponets.AutoSize = true;
+            this.checkBoxPcComponets.Location = new System.Drawing.Point(127, 130);
+            this.checkBoxPcComponets.Name = "checkBoxPcComponets";
+            this.checkBoxPcComponets.Size = new System.Drawing.Size(98, 17);
+            this.checkBoxPcComponets.TabIndex = 7;
+            this.checkBoxPcComponets.Text = "PcComponents";
+            this.checkBoxPcComponets.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 182);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(802, 262);
+            this.Controls.Add(this.checkBoxPcComponets);
+            this.Controls.Add(this.checkBoxFnac);
+            this.Controls.Add(this.checkBoxAmazon);
+            this.Controls.Add(this.BotonBuscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -102,7 +137,10 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BotonBuscar;
+        private System.Windows.Forms.CheckBox checkBoxAmazon;
+        private System.Windows.Forms.CheckBox checkBoxFnac;
+        private System.Windows.Forms.CheckBox checkBoxPcComponets;
     }
 }
 

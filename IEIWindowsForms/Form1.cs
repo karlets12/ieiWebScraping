@@ -16,16 +16,17 @@ namespace IEIWindowsForms
         {
             InitializeComponent();
             comboBoxMarca.Items.Add("Samsung");
+            comboBoxMarca.Items.Add("LG");
+            comboBoxMarca.Items.Add("Sony");
+            comboBoxMarca.Items.Add("Huawei");
+            comboBoxMarca.Items.Add("Motorola");
+            comboBoxMarca.Items.Add("Apple");
+            comboBoxMarca.Items.Add("One Plus");
+            comboBoxMarca.Items.Add("Lenovo");
             comboBoxMarca.Items.Add("Xiaomi");
         }
 
-        private void ComboBoxMarca_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            comboBoxMarca.Items.Add("Samsung");
-            comboBoxMarca.Items.Add("Xiaomi");
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
+        private void BotonBuscar_Click(object sender, EventArgs e)
         {
 
         }
