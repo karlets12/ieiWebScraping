@@ -127,12 +127,13 @@ public class ControllerInicio {
 					precioAnterior=precioActual;
 				}
 				
-				Smartphone smart = new Smartphone(nombre, precioActual, precioAnterior, vendedor);
+				//Smartphone smart = new Smartphone(nombre, precioActual, precioAnterior, vendedor);
 				
 				j++;
 			}
 
 		}
+//**************************************************************************************************************************
 		if (fnacCheck.isSelected()) {
 			String exePath = "C:\\firefox\\geckodriver.exe";
 			System.setProperty("webdriver.gecko.driver", exePath);
@@ -146,34 +147,29 @@ public class ControllerInicio {
 			buscadorFnac.sendKeys(busqueda);
 			buscadorFnac.submit();
 			//ESPERA
-			WebDriverWait waiting = new WebDriverWait(driver, 10);
-			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("f-icon")));
+			WebDriverWait waiting;
+			waiting = new WebDriverWait(driver, 10);
+			waiting.until( ExpectedConditions.presenceOfElementLocated(
+			By.cssSelector(".n2 > li:nth-child(3) > span:nth-child(1)")));
 			//T�TULO P�GINA
 			System.out.println("T�tulo de la p�gina " + driver.getTitle());
 			//BUSCANDO ELEMENTOS
-			List<WebElement> listaPreciosFnac = driver
-					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
-			//System.out.println("N�mero de elementos de la lista: " + listaElementosAmazon.size());
+			List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 'Article-itemGroup')]"));
+			System.out.println("Num elementos de la lista" + listaElementos.size());
 			
-			WebElement precioActual, nombreActual, precio, nombre;
-			/*int j = 1;
-			for (int i = 0; i < 5; i++) {
-				precioActual = listaPreciosAmazon.get(i);
-				Thread.sleep(400);
-				try {
-				precio = precioActual
-						.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" + j
-								+ "]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span[2]"));
-				nombre = nombreActual.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" +j +"]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span"));
-				System.out.println(nombre);
-					System.out.println(j + " " + precio.getText());
-				}catch(Exception e) {
-					System.out.println("No hay m�s resultados para esta b�squeda");
-				}
-				j++;
-			}*/
+			WebElement elementoActual, navegacion;
+			int j=2;
+			for (int i=0; i<listaElementos.size()-1; i++)
+			{
+			elementoActual = listaElementos.get(i);
+			navegacion =
+			elementoActual.findElement(By.xpath("//*[contains(@class,'Article-desc')]" ));
+			System.out.println(j + " " + navegacion.getText());
+			j++;
+			}
 
 		}
+//**************************************************************************************************************************
 		if (pcComponentsCheck.isSelected()) {
 			String exePath = "C:\\firefox\\geckodriver.exe";
 			System.setProperty("webdriver.gecko.driver", exePath);
