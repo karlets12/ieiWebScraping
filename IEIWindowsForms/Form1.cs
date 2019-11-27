@@ -15,6 +15,19 @@ namespace IEIWindowsForms
         public Form1()
         {
             InitializeComponent();
+            comboBoxMarca.Items.Add("Samsung");
+            comboBoxMarca.Items.Add("Xiaomi");
+        }
+
+        private void ComboBoxMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBoxMarca.Items.Add("Samsung");
+            comboBoxMarca.Items.Add("Xiaomi");
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
