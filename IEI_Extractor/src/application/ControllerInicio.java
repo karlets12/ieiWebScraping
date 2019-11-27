@@ -79,6 +79,7 @@ public class ControllerInicio {
 
 	}
 
+
 	 public void compruebaCheckBox(String marca, String modelo) throws InterruptedException {
 		if (amazonCheck.isSelected()) {
 			String exePath = "C:\\firefox\\geckodriver.exe";
@@ -103,27 +104,31 @@ public class ControllerInicio {
 
 			System.out.println("Numero de elementos de la lista: " + listaElementos.size());
 			String nombre="";
-			String precio="";
-			String precioOtro="";
+			String precioActual="";
+			String precioAnterior="";
+			String vendedor= "Amazon";
 			int j = 1;
 			for (int i = 0; i < listaElementos.size(); i++) {
 				try {
 					nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText();
-					precio = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price']")).getText();
+					precioActual = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price']")).getText();
 					System.out.println("Nombre:" + nombre + ", Precio:" + precio);
 					try {
 						nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText();
-						precioOtro = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price a-text-price']")).getText();
-						System.out.println("Nombre:" + nombre + ", Precio:" + precioOtro);
+						precioAnterior = listaElementos.get(i).findElement(By.cssSelector("span[class='a-price a-text-price']")).getText();
+						System.out.println("Nombre:" + nombre + ", Precio:" + precioAnterior);
 					}catch(Exception e) {
-						nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText());
-						precioOtro=precio;
-						System.out.println("Nombre:" + nombre + ", Precio:" + precioOtro);
+						nombre = listaElementos.get(i).findElement(By.cssSelector("span.a-text-normal")).getText();
+						precioAnterior=precioActual;
+						System.out.println("Nombre:" + nombre + ", Precio:" + precioAnterior);
 					}
 				}catch(Exception e) {
-					precio=listaElementos.get(i).findElement(By.cssSelector("span[class='a-color-base']")).getText();
-					precioOtro=precio;
+					precioActual=listaElementos.get(i).findElement(By.cssSelector("span[class='a-color-base']")).getText();
+					precioAnterior=precioActual;
 				}
+				
+				Smartphone smart = new Smartphone(nombre, precioActual, precioAnterior, vendedor);
+				
 				j++;
 			}
 

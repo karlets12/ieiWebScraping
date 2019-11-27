@@ -2,16 +2,17 @@ package application;
 
 public class Smartphone {
  
- public String name;
- public double price;
- public String web;
+ public String nombre;
+ public String precioActual;
+ public String precioAnterior;
+ public String vendedor;
  
  
- 
- public Smartphone(String name, double price,String web)
+ public Smartphone(String nombre, String precioActual,String precioAnterior, String vendedor)
  {
-     this.name = name;
-     this.price = price;
-     this.web = web;
+     this.nombre = nombre;
+     this.precioActual = precioActual;
+     this.precioAnterior = precioAnterior;
+     this.vendedor=vendedor;
  }
 }
