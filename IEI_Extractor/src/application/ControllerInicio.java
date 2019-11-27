@@ -96,22 +96,29 @@ public class ControllerInicio {
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("a-last")));
 			// TÍTULO DE RESPUESTA
 			System.out.println("Título de la página " + driver.getTitle());
-			String titulo = driver.getTitle();
 
-			List<WebElement> listaElementosAmazon = driver
+			List<WebElement> listaPreciosAmazon = driver
 					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
 			
-			//System.out.println("Número de elementos de la lista: " + listaElementosAmazon.size());
+			//DUDA NO ME LISTA LOS NOMBRES DE LOS PRODUCTOS DE AMAZON
+			List<WebElement> listaNombresAmazon = driver
+					.findElements(By.xpath("//*[contains(@class, 's-result-item')]"));
+
+			System.out.println("Número de elementos de la lista: " + listaNombresAmazon.size());
 			
-			WebElement elementoActual, precio;
+			WebElement precioActual, nombreActual, precio;
+			String nombre;
 			int j = 1;
 			for (int i = 0; i < 5; i++) {
-				elementoActual = listaElementosAmazon.get(i);
+				precioActual = listaPreciosAmazon.get(i);
+				nombreActual = listaNombresAmazon.get(i);
 				Thread.sleep(400);
 				try {
-				precio = elementoActual
+				precio = precioActual
 						.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" + j
 								+ "]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span[2]"));
+				nombre = nombreActual.findElement(By.cssSelector("span.a-text-normal")).getText().substring(0,18);
+				System.out.println(nombre);
 					System.out.println(j + " " + precio.getText());
 				}catch(Exception e) {
 					System.out.println("No hay más resultados para esta búsqueda");
@@ -126,23 +133,39 @@ public class ControllerInicio {
 			System.out.print(marca + " " + modelo);
 			WebDriver driver = new FirefoxDriver();
 			driver.get("https://www.fnac.es/");
-			// localizamos el input del buscador
-			WebElement buscadorGoogle = driver.findElement(By.id("Fnac_Search"));
-			// introducimos la cadena de búsqueda
+			//BUSCADOR
+			WebElement buscadorFnac = driver.findElement(By.id("Fnac_Search"));
+			//CADENA DE BÚSQUEDA
 			String busqueda = marca + " " + modelo;
-			buscadorGoogle.sendKeys(busqueda);
-			buscadorGoogle.submit();
-			// Esperar 10 segundos para una condición
+			buscadorFnac.sendKeys(busqueda);
+			buscadorFnac.submit();
+			//ESPERA
 			WebDriverWait waiting = new WebDriverWait(driver, 10);
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("f-icon")));
-
-			// Comprobar el título de la página de respuesta
+			//TÍTULO PÁGINA
 			System.out.println("Título de la página " + driver.getTitle());
-			String titulo = driver.getTitle();
-			if (driver.getTitle().equals(titulo))
-				System.out.println("PASA");
-			else
-				System.err.println("FALLA");
+			//BUSCANDO ELEMENTOS
+			List<WebElement> listaPreciosFnac = driver
+					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
+			//System.out.println("Número de elementos de la lista: " + listaElementosAmazon.size());
+			
+			WebElement precioActual, nombreActual, precio, nombre;
+			/*int j = 1;
+			for (int i = 0; i < 5; i++) {
+				precioActual = listaPreciosAmazon.get(i);
+				Thread.sleep(400);
+				try {
+				precio = precioActual
+						.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" + j
+								+ "]/div/span/div/div/div[2]/div[2]/div/div[2]/div[1]/div/div/div/span[2]"));
+				nombre = nombreActual.findElement(By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[" +j +"]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span"));
+				System.out.println(nombre);
+					System.out.println(j + " " + precio.getText());
+				}catch(Exception e) {
+					System.out.println("No hay más resultados para esta búsqueda");
+				}
+				j++;
+			}*/
 
 		}
 		if (pcComponentsCheck.isSelected()) {
@@ -208,5 +231,14 @@ public class ControllerInicio {
 			System.out.println("Timeout waiting for Page Load Request to complete.");
 		}
 	}
+	
+
+	/* Comprobar el título de la página de respuesta
+	System.out.println("Título de la página " + driver.getTitle());
+	String titulo = driver.getTitle();
+	if (driver.getTitle().equals(titulo))
+		System.out.println("PASA");
+	else
+		System.err.println("FALLA");*/
 
 }
