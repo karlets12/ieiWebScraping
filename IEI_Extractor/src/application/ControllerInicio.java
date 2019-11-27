@@ -46,7 +46,7 @@ public class ControllerInicio {
 
 	public String marca = "";
 	public String modelo = "";
-	public String telf = "teléfono móvil";
+	public String telf = "telï¿½fono mï¿½vil";
 	public Double precio;
 
 	public void initialize() {
@@ -87,15 +87,15 @@ public class ControllerInicio {
 			driver.get("https://www.amazon.es/");
 			// BUSCADOR
 			WebElement buscadorAmazon = driver.findElement(By.id("twotabsearchtextbox"));
-			// CADENA DE BÚSQUEDA
+			// CADENA DE Bï¿½SQUEDA
 			String busqueda = marca + " " + modelo;
 			buscadorAmazon.sendKeys(busqueda);
 			buscadorAmazon.submit();
 			// ESPERA
 			WebDriverWait waiting = new WebDriverWait(driver, 10);
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("a-last")));
-			// TÍTULO DE RESPUESTA
-			System.out.println("Título de la página " + driver.getTitle());
+			// Tï¿½TULO DE RESPUESTA
+			System.out.println("Tï¿½tulo de la pï¿½gina " + driver.getTitle());
 
 			List<WebElement> listaPreciosAmazon = driver
 					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
@@ -104,7 +104,7 @@ public class ControllerInicio {
 			List<WebElement> listaNombresAmazon = driver
 					.findElements(By.xpath("//*[contains(@class, 's-result-item')]"));
 
-			System.out.println("Número de elementos de la lista: " + listaNombresAmazon.size());
+			System.out.println("Nï¿½mero de elementos de la lista: " + listaNombresAmazon.size());
 			
 			WebElement precioActual, nombreActual, precio;
 			String nombre;
@@ -121,7 +121,7 @@ public class ControllerInicio {
 				System.out.println(nombre);
 					System.out.println(j + " " + precio.getText());
 				}catch(Exception e) {
-					System.out.println("No hay más resultados para esta búsqueda");
+					System.out.println("No hay mï¿½s resultados para esta bï¿½squeda");
 				}
 				j++;
 			}
@@ -135,19 +135,19 @@ public class ControllerInicio {
 			driver.get("https://www.fnac.es/");
 			//BUSCADOR
 			WebElement buscadorFnac = driver.findElement(By.id("Fnac_Search"));
-			//CADENA DE BÚSQUEDA
+			//CADENA DE Bï¿½SQUEDA
 			String busqueda = marca + " " + modelo;
 			buscadorFnac.sendKeys(busqueda);
 			buscadorFnac.submit();
 			//ESPERA
 			WebDriverWait waiting = new WebDriverWait(driver, 10);
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.className("f-icon")));
-			//TÍTULO PÁGINA
-			System.out.println("Título de la página " + driver.getTitle());
+			//Tï¿½TULO Pï¿½GINA
+			System.out.println("Tï¿½tulo de la pï¿½gina " + driver.getTitle());
 			//BUSCANDO ELEMENTOS
 			List<WebElement> listaPreciosFnac = driver
 					.findElements(By.xpath("//*[contains(@class, 'a-price-whole')]"));
-			//System.out.println("Número de elementos de la lista: " + listaElementosAmazon.size());
+			//System.out.println("Nï¿½mero de elementos de la lista: " + listaElementosAmazon.size());
 			
 			WebElement precioActual, nombreActual, precio, nombre;
 			/*int j = 1;
@@ -162,7 +162,7 @@ public class ControllerInicio {
 				System.out.println(nombre);
 					System.out.println(j + " " + precio.getText());
 				}catch(Exception e) {
-					System.out.println("No hay más resultados para esta búsqueda");
+					System.out.println("No hay mï¿½s resultados para esta bï¿½squeda");
 				}
 				j++;
 			}*/
@@ -175,28 +175,28 @@ public class ControllerInicio {
 			driver.get("https://www.pccomponentes.com/");
 			// localizamos el input del buscador
 			WebElement buscadorPcComponents= driver.findElement(By.name("query"));
-			// introducimos la cadena de búsqueda
+			// introducimos la cadena de bï¿½squeda
 			String busqueda = telf + " " + marca + " " + modelo;
 			buscadorPcComponents.sendKeys(busqueda);
 			buscadorPcComponents.submit();
 
-			// Esperar 10 segundos para una condición
+			// Esperar 10 segundos para una condiciï¿½n
 			WebDriverWait waiting = new WebDriverWait(driver, 1000);
 			waiting.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@class, 'ais-Hits')]")));
 			waitForPageLoaded(driver);
-			// Comprobar el título de la página de respuesta
-			System.out.println("Título de la página " + driver.getTitle());
+			// Comprobar el tï¿½tulo de la pï¿½gina de respuesta
+			System.out.println("Tï¿½tulo de la pï¿½gina " + driver.getTitle());
 			String titulo = driver.getTitle();
 			if (driver.getTitle().equals(titulo))
 				System.out.println("PASA");
 			else
 				System.err.println("FALLA");
-			// Extracción de datos
+			// Extracciï¿½n de datos
 
 			List<WebElement> listaElementos = driver.findElements(By.xpath("//*[contains(@class, 'ais-Hits')]"));
-			System.out.println("Número de elementos de la lista: " + listaElementos.size());
+			System.out.println("Nï¿½mero de elementos de la lista: " + listaElementos.size());
 			waitForPageLoaded(driver);
-			// Obtener cada uno de los artículos
+			// Obtener cada uno de los artï¿½culos
 			WebElement elementoActual, navegacion;
 			int j = 1;
 			for (int i = 0; i < listaElementos.size()-2; i++) {
@@ -208,7 +208,7 @@ public class ControllerInicio {
 				System.out.println(j + " " + navegacion.getText());
 				j++;
 				}catch(Exception e) {
-					System.out.println("No hay más resulatdos para esta búsqueda.");
+					System.out.println("No hay mï¿½s resulatdos para esta bï¿½squeda.");
 				}
 				
 			}
@@ -233,8 +233,8 @@ public class ControllerInicio {
 	}
 	
 
-	/* Comprobar el título de la página de respuesta
-	System.out.println("Título de la página " + driver.getTitle());
+	/* Comprobar el tï¿½tulo de la pï¿½gina de respuesta
+	System.out.println("Tï¿½tulo de la pï¿½gina " + driver.getTitle());
 	String titulo = driver.getTitle();
 	if (driver.getTitle().equals(titulo))
 		System.out.println("PASA");
